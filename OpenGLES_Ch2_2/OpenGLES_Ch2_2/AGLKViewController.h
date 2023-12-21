@@ -18,5 +18,5 @@
 @property(nonatomic)NSInteger preferredFramesPerSecond;
 @property(nonatomic,readonly) NSInteger framesPerSecond;
 @property(nonatomic,getter= isPaused) BOOL paused;
-
+@property(nonatomic,strong) AGLKView* customeRenderView;//自定义渲染view
 @end

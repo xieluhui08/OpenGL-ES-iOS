@@ -30,7 +30,14 @@ static const SceneVertex vertices[] = {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    AGLKView *view = (AGLKView *)self.view;
+    
+    CGFloat screenwidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat x = 40;
+    CGFloat y = 80;
+    self.customeRenderView.frame = CGRectMake(x, y, screenwidth-2*x, screenHeight-2*y);
+    [self.view addSubview:self.customeRenderView];
+    AGLKView *view = self.customeRenderView;
     NSAssert([view isKindOfClass:[AGLKView class]],
              @"View controller's view is not a AGLKView");
     view.context = [[EAGLContext alloc]initWithAPI:kEAGLRenderingAPIOpenGLES2];

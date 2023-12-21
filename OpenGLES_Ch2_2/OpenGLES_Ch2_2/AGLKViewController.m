@@ -37,9 +37,16 @@ static const NSInteger kAGLKDefaultFramesPerSecond = 30;
     return self;
 }
 
+-(AGLKView*)customeRenderView{
+    if(!_customeRenderView){
+        _customeRenderView = [[AGLKView alloc] initWithFrame:CGRectZero];
+    }
+    return _customeRenderView;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    AGLKView *view = (AGLKView *)self.view;
+    AGLKView *view = (AGLKView *)self.customeRenderView;
     NSAssert([view isKindOfClass:[AGLKView class]],
              @"View controller's view is not a AGLKView");
     view.opaque = YES;
@@ -65,7 +72,7 @@ static const NSInteger kAGLKDefaultFramesPerSecond = 30;
 }
 
 -(void)drawView:(id)sender{
-    [(AGLKView *)self.view display];
+    [(AGLKView *)self.customeRenderView display];
 }
 
 -(NSInteger)framesPerSecond{
