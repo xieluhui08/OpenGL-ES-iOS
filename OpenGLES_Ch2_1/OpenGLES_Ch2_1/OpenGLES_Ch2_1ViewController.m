@@ -16,11 +16,12 @@
 typedef struct {
     GLKVector3 positionCoords;
 }SceneVertex;
-
+//vertext position
 static const SceneVertex vertices[] = {
-    {{-1.0f,-1.0f,1.0f}},
-    {{1.0f,-1.0f,0.0f}},
-    {{1.0f,1.0f,0.0f}},
+    {{-0.5f,-0.5f,0.0f}},
+    {{0.5f,-0.5f,0.0f}},
+    {{-0.5f,0.5f,0.0f}},
+    {{0.5f,0.5f,0.0f}},
 };
 /*
  viewDidLoad方噶会将它继承的view属性的值转换为GLKView类型，类似OpenGLES_Ch2_1ViewController的GLKViewController的子类只能与GLKView实例或者是GLKView子类的实例一起正确工作。但是这个离子的storyboard文件定义了哪一个是与应用的GLKViewController实例相关联的视图。使用Assert（）函数的一个运行时验证会验证在运行时从storyboard加载的视图是否是正确的类型。如果验证的条件为false，那么NSAssert()会向调试器活iOS设备控制台发送一个错误消息。NSAssert()还会还会生成一个如果不做处理就停止应用的NSInternallnconsistencyException。在这个例子中，无法从一个加载自storyboard的错误视图还原应用的界面，因此在运行时监测到错误时，最好先停止应用。
@@ -38,7 +39,7 @@ static const SceneVertex vertices[] = {
     self.baseEffect.useConstantColor = GL_TRUE;//如果这个设置成GL_FALSE，绘制的图形就是白色的
     //GLKBaseEffect 类提供了一个不依赖于所使用的OpenGL ES 笨笨的控制OpenGL ES 渲染的方法，OpenGL ES 1.1跟OpenGL ES 2.0内部工作机制是非常不同的。2.0版本执行为GPU专门定制的程序。如果没有GLKit和GLKBaseEffect类，完成这个简单的例子就需要使用OpenGL ES 2.0的“Shading Language”变成写一个小的GPU程序。GLKBaseEffect会在需要的时候自动地构建GPU程序并极大地简化本书中的例子。
     //控制渲染像素颜色的方式有很多种。这个应用的GLBaseEffect实例使用一个恒定不变的白色来渲染三角形。这就意味着在三角形中没一个像素都有相同的颜色。下面的代码使用在GLKit中定义的用于保存4个颜色元素值的C数据结构体GLKVector4来设置这个恒定的颜色。
-    self.baseEffect.constantColor = GLKVector4Make(1.0f, 0.0f, 1.0f, 1.0f);//需要渲染的图形的颜色
+    self.baseEffect.constantColor = GLKVector4Make(1.0f, 0.0f, 0.0f, 1.0f);//需要渲染的图形的颜色
     //前三个颜色值是第一章中介绍的红，绿，蓝，第四个是透明度。它决定像素是半透明还是不透明。透明度元素会在第三章做详细的介绍。设置红绿蓝为满值的1.0，以设置成为白色。设置透明度的值为1.0，颜色完全不透明。红绿蓝和透明度值统称为一个RGBA颜色。GLKVector4Make()函数返回一个用指定的值初始化的GLKit GLKVector4结构体。
     //GLClearColor()函数设置当前OpenGL ES的上下文的“清除颜色”为不透明的黑色。清除颜色由RGBA颜色元素值组成，用于在上下文的缓存被清除时初始化每一个像素的颜色值。
      glClearColor(0.0f, 1.0f, 0.0f, 1.0f);//背景颜色
@@ -90,7 +91,7 @@ static const SceneVertex vertices[] = {
      第一个参数：会告诉GPU怎么处理在绑定顶点缓存内的顶点数据，
      第二个参数和第三个参数分别指定缓存内的需要渲染的第一个顶点的位置和顶点的数量。
      */
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     /*
      这个例子中的所有的代码试运行在CPU上的，然后再需要进一步处理的时候向GPU发送命令，GPU也可能会处理来自iOS的Core Animation的命令，因此在任何给定的时刻GPU总共需要执行多少处理并不一定。
      */
