@@ -37,8 +37,8 @@ static const SceneVertex vertices[] = {
     [EAGLContext setCurrentContext:view.context];
     self.baseEffect = [[GLKBaseEffect alloc]init];
     self.baseEffect.useConstantColor = GL_TRUE;
-    self.baseEffect.constantColor = GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
-    glClearColor(1.0f, 0.5f, 0.0f, 1.0f);
+    self.baseEffect.constantColor = GLKVector4Make(1.0f, 1.0f, 0.5f, 1.0f);
+    glClearColor(1.0f, 0.5f, 0.8f, 1.0f);
     glGenBuffers(1, &vertexBufferID);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBufferID);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
