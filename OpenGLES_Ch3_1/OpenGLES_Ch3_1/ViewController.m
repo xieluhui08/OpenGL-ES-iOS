@@ -32,8 +32,9 @@ SceneVertex;
  */
 static const SceneVertex vertices[] = {
     {{-0.5f,-0.5f,0.0f},{0.0f,0.0f}},
-    {{0.5f,-0.5f,0.0f},{1.0f,0.0f}},
+    {{0.5f,-0.5f,0.0f},{0.5f,0.0f}},
     {{-0.5f,0.5f,0.0f},{0.0f,1.0f}},
+    {{0.5f,0.5f,0.0f},{0.5f,1.0f}},
 };
 
 - (void)viewDidLoad {
@@ -72,7 +73,7 @@ static const SceneVertex vertices[] = {
     [self.vertexBuffer prepareToDrawWithAttrib:GLKVertexAttribPosition numberOfCoordinates:3 attribOffset:offsetof(SceneVertex, positionCoords) shouldEnable:YES];
     [self.vertexBuffer prepareToDrawWithAttrib:GLKVertexAttribTexCoord0 numberOfCoordinates:2 attribOffset:offsetof(SceneVertex, textureCoords) shouldEnable:YES];
     //指示OpenGL ES 去渲染有纹理的三角形。
-    [self.vertexBuffer drawArrayWithMode:GL_TRIANGLES startVertexIndex:0 numberOfVertices:3];
+    [self.vertexBuffer drawArrayWithMode:GL_TRIANGLE_STRIP startVertexIndex:0 numberOfVertices:4];
 }
 
 -(void)viewDidUnload{
