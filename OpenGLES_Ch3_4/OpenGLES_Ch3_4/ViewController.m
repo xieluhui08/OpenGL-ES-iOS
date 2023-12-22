@@ -50,13 +50,13 @@ static const SceneVertex vertices[] = {
     /*
     [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],GLKTextureLoaderOriginBottomLeft, nil]这里面，GLKTextureLoaderOriginBottomLeft键与布尔YES搭配只为了i命令GLKit的GLKTextureLeader类垂直翻转图像数据。这个翻转可以抵消图像的原点与OpenGL ES标准原点之间的差异。
     */
-    self.textureInfo0 = [GLKTextureLoader textureWithCGImage:imageRef0 options:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],GLKTextureLoaderOriginBottomLeft, nil] error:NULL];
+    self.textureInfo0 = [GLKTextureLoader textureWithCGImage:imageRef0 options:nil error:NULL];
     CGImageRef imageRef1 = [UIImage imageNamed:@"beetle.png"].CGImage;
     
     /*
      * 下面的方法会加载第二个纹理并且开启与像素颜色渲染缓存的混合。
      **/
-    self.textureInfo1 = [GLKTextureLoader textureWithCGImage:imageRef1 options:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],GLKTextureLoaderOriginBottomLeft, nil] error:NULL];
+    self.textureInfo1 = [GLKTextureLoader textureWithCGImage:imageRef1 options:nil error:NULL];
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
